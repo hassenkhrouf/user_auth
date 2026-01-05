@@ -1,0 +1,261 @@
+/* Clean, modern form styles */
+
+:root {
+    --bg-1: #0f172a;
+    --bg-2: #07103a;
+    --card: #ffffff;
+    --muted: #6b7280;
+    --accent: #7c3aed;
+    --accent-2: #06b6d4;
+    --glass: rgba(255, 255, 255, 0.06);
+    --radius: 12px;
+    --shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+html, body {
+    height: 100%
+}
+
+body {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    color: #0b1220;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* Page title */
+h1 {
+    color: #f8fafc;
+    font-weight: 700;
+    margin-bottom: 28px;
+    letter-spacing: -0.02em;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+/* Form cards (targets the two form divs in index.html) */
+body>div {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), var(--glass));
+    border-radius: var(--radius);
+    padding: 22px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    margin: 10px 0;
+}
+
+/* Layout side-by-side on wider screens */
+@media (min-width:1000px) {
+    body {
+        align-items: center;
+    }
+
+    /* place the two form cards inline while keeping the title above */
+    body>div {
+        margin: 20px;
+    }
+
+    /* create a simple two-column layout by treating direct divs as inline-block */
+    body>div:first-of-type, body>div:last-of-type {
+        display: inline-block;
+        vertical-align: top;
+    }
+}
+
+/* Headings inside cards */
+body>div h2 {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+    color: #eef2ff;
+}
+
+/* Form layout */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Inputs */
+input[type="email"], input[type="password"], input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    background: rgba(255, 255, 255, 0.03);
+    color: #eff6ff;
+    outline: none;
+    transition: box-shadow .18s ease, transform .12s ease, border-color .12s ease;
+    font-size: 0.95rem;
+    caret-color: var(--accent-2);
+}
+
+input::placeholder {
+    color: rgba(226, 232, 240, 0.45);
+}
+
+input:focus {
+    box-shadow: 0 6px 18px rgba(124, 58, 237, 0.12);
+    border-color: rgba(124, 58, 237, 0.9);
+    transform: translateY(-1px);
+}
+
+/* Buttons */
+button {
+    appearance: none;
+    border: 0;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease, opacity .12s;
+    box-shadow: 0 8px 20px rgba(7, 12, 34, 0.45);
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+    opacity: 0.96
+}
+
+/* Small utility text */
+small {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+/* Responsive tweaks */
+@media (max-width:520px) {
+    body {
+        padding: 28px 14px
+    }
+
+    body>div {
+        padding: 18px
+    }
+
+    h1 {
+        font-size: 1.35rem
+    }
+}
+
+/* Optional helper classes (use in future templates) */
+.form-row {
+    display: flex;
+    gap: 10px
+}
+
+.form-row>* {
+    flex: 1
+}
+
+/* Success / error states (apply classes via JS when needed) */
+.input-error {
+    border-color: #ef4444 !important;
+    box-shadow: 0 6px 18px rgba(239, 68, 68, 0.08) !important;
+}
+
+.message {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    color: var(--muted)
+}
+
+.message.error {
+    color: #ffb4b4
+}
+
+.message.success {
+    color: #bbf7d0
+}
+
+/* Feedback area centered under card */
+.feedback {
+    width: 100%;
+    max-width: 420px;
+    margin: 10px auto 20px;
+    /* centers under the card */
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease;
+    opacity: 1;
+    display: block;
+}
+
+/* hide completely when empty so it doesn't affect layout */
+.feedback:empty {
+    display: none;
+    opacity: 0;
+    transform: translateY(-4px);
+}
+
+.feedback.error {
+    color: #ef4444
+}
+
+/* red for errors */
+.feedback.success {
+    color: #10b981
+}
+
+/* green for success */
+
+/* reduce bottom margin on cards so feedback sits close */
+body>.card {
+    margin-bottom: 6px;
+}
+
+/* Card helpers and transition for switch effect */
+.card {
+    transition: opacity .28s ease, transform .28s ease, max-height .28s ease, padding .28s ease;
+    overflow: hidden;
+    max-height: 800px;
+    /* large enough to contain form */
+}
+
+.card.hidden {
+    opacity: 0;
+    transform: translateY(12px) scale(0.995);
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    pointer-events: none;
+}
+
+/* Link-style button used for switching */
+.link-btn {
+    background: transparent;
+    border: none;
+    color: var(--accent-2);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 6px;
+    text-decoration: underline;
+}
+
+.link-btn:focus {
+    outline: 2px solid rgba(6, 182, 212, 0.12);
+    border-radius: 6px;
+}

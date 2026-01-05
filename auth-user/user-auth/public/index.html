@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Auth</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>User Registration and Login</h1>
+
+    <!-- Login shown first -->
+    <div class="card" id="loginCard" aria-hidden="false">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Email" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <small class="message">Don't have an account? <button id="showRegister" type="button" class="link-btn">Register</button></small>
+    </div>
+    <div class="feedback" id="loginFeedback" aria-live="polite"></div>
+
+    <!-- Register hidden initially -->
+    <div class="card hidden" id="registerCard" aria-hidden="true">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <input type="email" id="registerEmail" placeholder="Email" required>
+            <input type="password" id="registerPassword" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+        <small class="message">Already have an account? <button id="showLogin" type="button" class="link-btn">Login</button></small>
+    </div>
+    <div class="feedback" id="registerFeedback" aria-live="polite"></div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
